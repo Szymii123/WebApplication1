@@ -40,7 +40,7 @@ public class HomeController : Controller
                 break;
             case "mul": result = $"{a} * {b} = {a * b}";
                 break;
-            case "div": result = $"{a} / {b} = {a / b}";
+            case "div": result = $"{a} / {b} = {a / b }";
                 break;
             default:
                 result = "Nieznany operator!";
