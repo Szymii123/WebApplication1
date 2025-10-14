@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers;
 
@@ -10,29 +11,15 @@ public class CalculatorController : Controller
         return View();
     }
     
-    public IActionResult Result(double? a,double? b,[FromQuery(Name = "op")]string op)
+    public IActionResult Result(CalculatorModel model)
     {
-        string result = "";
-        if (a is null || b is null)
-        {
-            return View("Calculator", model:"Brak parametru a lub b!");
-        }
-        switch (op)
-        {
-            case "add": result = $"{a} + {b} = {a + b}";
-                break;
-            case "sub": result = $"{a} - {b} = {a - b}";
-                break;
-            case "mul": result = $"{a} * {b} = {a * b}";
-                break;
-            case "div": result = $"{a} / {b} = {a / b }";
-                break;
-            default:
-                result = "Nieznany operator!";
-                break;
-                
-        }
-        ViewBag.Result = result;
+        
+       if ( !model.IsValid())
+       {
+          return View("Error", model:"Nie można obliczyć");
+       }
+       
+        ViewBag.Result = model.Result();
         return View();
     }
     
