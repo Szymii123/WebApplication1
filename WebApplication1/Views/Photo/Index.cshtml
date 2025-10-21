@@ -1,0 +1,18 @@
+@model  List<Photo>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Zdjęcia</h2>
+<a class="btn-outline-primary" asp-controller="Photo" asp-action="Create">Dodaj zdjęcie</a>
+<h3>Lista</h3>
+<ul>
+   @{
+       foreach (var obj in Model)
+       {
+           <li>@obj.Author</li>
+       }
+   } 
+</ul>
