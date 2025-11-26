@@ -23,32 +23,52 @@ public class HomeController : Controller
     {
         return View();
     }
+    
+    public IActionResult About()
+    {
+        return View();
+    }
+
 
     // w op może wystąpić: add, sub, mul, div
-    public IActionResult Calculator(double? a,double? b,[FromQuery(Name = "operator")]string op)
+    public IActionResult Calculator(double? a, double? b, [FromQuery(Name = "operator")] string op)
     {
-        string result = "";
+        
+        ViewBag.A = a;
+        ViewBag.B = b;
+        ViewBag.Op = op;
+        
         if (a is null || b is null)
         {
-            return View("Calculator", model:"Brak parametru a lub b!");
+            ViewBag.Error = "Brak parametru a lub b!";
+            return View("Calculator");
         }
+
+        double result;
+
         switch (op)
         {
-            case "add": result = $"{a} + {b} = {a + b}";
+            case "add":
+                result = a.Value + b.Value;
                 break;
-            case "sub": result = $"{a} - {b} = {a - b}";
+            case "sub":
+                result = a.Value - b.Value;
                 break;
-            case "mul": result = $"{a} * {b} = {a * b}";
+            case "mul":
+                result = a.Value * b.Value;
                 break;
-            case "div": result = $"{a} / {b} = {a / b }";
+            case "div":
+                result = a.Value / b.Value;
                 break;
             default:
-                result = "Nieznany operator!";
-                break;
-                
+                ViewBag.Error = "Nieznany operator!";
+                return View("Calculator");
         }
-        return View("Calculator",result);
+
+        ViewBag.Result = result;
+        return View("Calculator");
     }
+
     
     
 

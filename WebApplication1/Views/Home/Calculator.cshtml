@@ -1,9 +1,19 @@
-@model string
-
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Calculator";
     Layout = "_Layout";
 }
 
 <h2>Kalkulator</h2>
-<h3>@Model</h3>
+
+@if (ViewBag.Error != null)
+{
+    <p>@ViewBag.Error</p>
+}
+else if (ViewBag.A != null && ViewBag.B != null && ViewBag.Op != null && ViewBag.Result != null)
+{
+    <p>Wynik działania dla @ViewBag.A @ViewBag.Op @ViewBag.B = @ViewBag.Result</p>
+}
+else
+{
+    <p>Brak danych do obliczeń.</p>
+}
