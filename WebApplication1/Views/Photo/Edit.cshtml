@@ -1,0 +1,59 @@
+@using WebApplication1.Models
+@model Photo
+
+@{
+    ViewBag.Title = "Edytuj zdjęcie";
+    Layout = "_Layout";
+}
+
+<h2>Edytuj zdjęcie</h2>
+
+<form asp-action="Edit" method="post">
+    <input asp-for="Id" type="hidden" />
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Author">Nazwa autora</label>
+        <input asp-for="Author" class="form-control" />
+        <span class="text-danger" asp-validation-for="Author"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Hour">Godzina</label>
+        <input asp-for="Hour" class="form-control" />
+        <span class="text-danger" asp-validation-for="Hour"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Camera">Kamera</label>
+        <input asp-for="Camera" class="form-control" />
+        <span class="text-danger" asp-validation-for="Camera"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Data">Data</label>
+        <input asp-for="Data" class="form-control" />
+        <span class="text-danger" asp-validation-for="Data"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description">Opis</label>
+        <input asp-for="Description" class="form-control" />
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Format">Format</label>
+        <input asp-for="Format" class="form-control" />
+        <span class="text-danger" asp-validation-for="Format"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Resolution">Rozdzielczość</label>
+        <input asp-for="Resolution" class="form-control" />
+        <span class="text-danger" asp-validation-for="Resolution"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+    <a class="btn btn-secondary" asp-action="Index">Anuluj</a>
+</form>

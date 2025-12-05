@@ -1,0 +1,24 @@
+@using WebApplication1.Models
+@model Photo
+
+@{
+    ViewBag.Title = "Szczegóły zdjęcia";
+    Layout = "_Layout";
+}
+
+<h2>Szczegóły zdjęcia</h2>
+
+<table class="table">
+    <tr><th>Id</th><td>@Model.Id</td></tr>
+    <tr><th>Data</th><td>@Model.Data.ToShortDateString()</td></tr>
+    <tr><th>Godzina</th><td>@Model.Hour</td></tr>
+    <tr><th>Autor</th><td>@Model.Author</td></tr>
+    <tr><th>Aparat</th><td>@Model.Camera</td></tr>
+    <tr><th>Opis</th><td>@Model.Description</td></tr>
+    <tr><th>Rozdzielczość</th><td>@Model.Resolution</td></tr>
+    <tr><th>Format</th><td>@Model.Format</td></tr>
+</table>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Index">Powrót do listy</a>
+</p>
