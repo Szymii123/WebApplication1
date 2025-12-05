@@ -1,0 +1,21 @@
+@model WebApplication1.Models.Photo
+@using WebApplication1.Models
+
+<h2>Usuń zdjęcie</h2>
+
+<p>Czy na pewno chcesz usunąć to zdjęcie?</p>
+
+<table class="table">
+    <tr><th>Data i godzina</th><td>@Model.DateTaken</td></tr>
+    <tr><th>Opis</th><td>@Model.Description</td></tr>
+    <tr><th>Aparat</th><td>@Model.Camera</td></tr>
+    <tr><th>Autor</th><td>@Model.Author</td></tr>
+    <tr><th>Rozdzielczość</th><td>@Model.Resolution</td></tr>
+    <tr><th>Format</th><td>@Model.Format.GetDisplayName()</td></tr>
+</table>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button class="btn btn-danger">Usuń</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
