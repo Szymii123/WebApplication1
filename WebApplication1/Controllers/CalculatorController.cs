@@ -5,22 +5,18 @@ namespace WebApplication1.Controllers;
 
 public class CalculatorController : Controller
 {
-    // GET
     public IActionResult Form()
     {
         return View();
     }
     
-    public IActionResult Result(CalculatorModel model)
+    public IActionResult Result(Calculator model)
     {
-        
-       if ( !model.IsValid())
-       {
-          return View("Error", model:"Nie można obliczyć");
-       }
-       
-        ViewBag.Result = model.Result();
-        return View();
+        if (!model.IsValid())
+        {
+            return View("Error");
+        }
+
+        return View(model);
     }
-    
 }

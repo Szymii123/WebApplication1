@@ -1,32 +1,50 @@
 namespace WebApplication1.Models;
 
-public class CalculatorModel
+public class Calculator
 {
-    public double? A { get; set; }
-    public double? B { get; set; }
-    public Operators Op { get; set; }
+    public Operators? Operator { get; set; }
+    public double? X { get; set; }
+    public double? Y { get; set; }
+
+    public string Op
+    {
+        get
+        {
+            switch (Operator)
+            {
+                case Operators.Add:
+                    return "+";
+                case Operators.Sub:
+                    return "-";
+                case Operators.Mul:
+                    return "*";
+                case Operators.Div:
+                    return "/";
+                default:
+                    return "";
+            }
+        }
+    }
 
     public bool IsValid()
     {
-        return A is not null && B is not null && Op!= Operators.Unknown;
+        return Operator != null && X != null && Y != null;
     }
-    public string Result()
+
+    public double Calculate()
     {
-        string result = "";
-        switch (Op)
+        switch (Operator)
         {
-            case Operators.Add: result = $"{A} + {B} = {A + B}";
-                break;
-            case Operators.Subb: result = $"{A} - {B} = {A - B}";
-                break;
-            case Operators.Mul: result = $"{A} * {B} = {A * B}";
-                break;
-            case Operators.Div: result = $"{A} / {B} = {A / B }";
-                break;
+            case Operators.Add:
+                return (double)(X + Y);
+            case Operators.Sub:
+                return (double)(X - Y);
+            case Operators.Mul:
+                return (double)(X * Y);
+            case Operators.Div:
+                return Y != 0 ? (double)(X / Y) : double.NaN;
             default:
-                result = "Nieznany operator!";
-                break;
+                return double.NaN;
         }
-        return result;
     }
 }

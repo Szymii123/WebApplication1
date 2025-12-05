@@ -7,7 +7,6 @@ namespace WebApplication1.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-   
 
     public HomeController(ILogger<HomeController> logger)
     {
@@ -23,34 +22,6 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    // w op może wystąpić: add, sub, mul, div
-    public IActionResult Calculator(double? a,double? b,[FromQuery(Name = "operator")]string op)
-    {
-        string result = "";
-        if (a is null || b is null)
-        {
-            return View("Calculator", model:"Brak parametru a lub b!");
-        }
-        switch (op)
-        {
-            case "add": result = $"{a} + {b} = {a + b}";
-                break;
-            case "sub": result = $"{a} - {b} = {a - b}";
-                break;
-            case "mul": result = $"{a} * {b} = {a * b}";
-                break;
-            case "div": result = $"{a} / {b} = {a / b }";
-                break;
-            default:
-                result = "Nieznany operator!";
-                break;
-                
-        }
-        return View("Calculator",result);
-    }
-    
-    
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
