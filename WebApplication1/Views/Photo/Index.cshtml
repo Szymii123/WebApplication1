@@ -1,18 +1,53 @@
-@model  List<Photo>
+@using WebApplication1.Models
+@model List<Photo>
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Lista zdjęć";
     Layout = "_Layout";
 }
 
-<h2>Zdjęcia</h2>
-<a class="btn-outline-primary" asp-controller="Photo" asp-action="Create">Dodaj zdjęcie</a>
-<h3>Lista</h3>
-<ul>
-   @{
-       foreach (var obj in Model)
-       {
-           <li>@obj.Author</li>
-       }
-   } 
-</ul>
+<h2>Lista zdjęć</h2>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Dodaj nowe zdjęcie</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Data</th>
+        <th>Godzina</th>
+        <th>Autor</th>
+        <th>Aparat</th>
+        <th>Rozdzielczość</th>
+        <th>Format</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Data.ToShortDateString()</td>
+            <td>@item.Hour</td>
+            <td>@item.Author</td>
+            <td>@item.Camera</td>
+            <td>@item.Resolution</td>
+            <td>@item.Format</td>
+            <td>
+                <a class="btn btn-primary btn-sm"
+                   asp-action="Details"
+                   asp-route-id="@item.Id">Szczegóły</a>
+
+                <a class="btn btn-warning btn-sm"
+                   asp-action="Edit"
+                   asp-route-id="@item.Id">Edytuj</a>
+
+                <a class="btn btn-danger btn-sm"
+                   asp-action="Delete"
+                   asp-route-id="@item.Id">Usuń</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
