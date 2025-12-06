@@ -58,9 +58,9 @@ namespace WebApplication1.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var updated = _photoService.UpdatePhoto(model);
-            if (!updated)
-                return NotFound();
+            _photoService.UpdatePhoto(model);
+            return RedirectToAction(nameof(Index));
+
 
             return RedirectToAction(nameof(Index));
         }
