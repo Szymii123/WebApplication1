@@ -1,5 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 
 namespace WebApplication1.Models
 {
@@ -25,5 +29,13 @@ namespace WebApplication1.Models
 
         [Display(Name = "Format")]
         public PhotoFormat Format { get; set; }
+
+        [Display(Name = "Album")]
+        [HiddenInput]
+        public int AlbumId { get; set; }
+
+
+        [ValidateNever]
+        public List<SelectListItem> Albums { get; set; }
     }
 }
